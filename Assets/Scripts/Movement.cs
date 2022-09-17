@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
       Cursor.lockState = CursorLockMode.Locked;
    }
 
-   private void FixedUpdate()
+   private void LateUpdate()
    {
       //Rotate left and right with the mouse.
       turn.x += Input.GetAxis("Mouse X") * sensitivity;
@@ -28,10 +28,16 @@ public class Movement : MonoBehaviour
       float lR = Input.GetAxisRaw("Vertical");
       Vector3 movement = transform.forward * lR + transform.right * uD;
 
-      if (movement == Vector3.zero)
+      if(Input.GetKeyDown(KeyCode.Space))
+      {
+         rbPlayer.AddForce(Vector3.up * 300f, ForceMode.Force);
+      }
+      
+      /*if (movement == Vector3.zero)
       {
          return;
-      }
+      }*/
+      
       rbPlayer.MovePosition(rbPlayer.position + movement * (speed * Time.deltaTime));
       
    }
