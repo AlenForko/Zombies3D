@@ -12,6 +12,6 @@ public class SceneManagement : MonoBehaviour
 
     public void ExitGame()
     {
-        SceneManager.Application.Quit();
+        Application.Quit();
     }
 }
