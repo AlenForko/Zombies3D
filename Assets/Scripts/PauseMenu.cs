@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 
 public class PauseMenu : MonoBehaviour
@@ -22,7 +17,6 @@ public class PauseMenu : MonoBehaviour
                 Resume();
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                
             }
             else
             {
@@ -38,7 +32,6 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
-        
     }
 
     public void Resume()
