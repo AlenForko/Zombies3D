@@ -1,30 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class PauseMenu : MonoBehaviour
 {
-    public Canvas canvas;
-    
-    public void PausedMenu()
+    public GameObject pauseMenu;
+
+    public static bool gameIsPaused = false;
+
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 0;
-            canvas.enabled = true;
+            if (gameIsPaused)
+            {
+                Resume();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                
+            }
+            else
+            {
+                Pause();
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
     }
 
-    public void ResumeGame()
+    public void Pause()
     {
-        Time.timeScale = 1;
-        canvas.enabled = false;
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        gameIsPaused = true;
+        
     }
 
-    public void BackToMainMenu(int sceneID)
+    public void Resume()
     {
-        SceneManager.LoadScene(0);
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        gameIsPaused = false;
+    }
+
+    public void BackToMainMenu(int SceneID)
+    {
+        SceneManager.LoadScene(SceneID);
+        Time.timeScale = 1f;
     }
 }

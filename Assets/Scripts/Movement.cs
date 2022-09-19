@@ -32,13 +32,7 @@ public class Movement : MonoBehaviour
       {
          rbPlayer.AddForce(Vector3.up * 300f, ForceMode.Force);
       }
-      
-      /*if (movement == Vector3.zero)
-      {
-         return;
-      }*/
-      
+
       rbPlayer.MovePosition(rbPlayer.position + movement * (speed * Time.deltaTime));
-      
    }
 }
