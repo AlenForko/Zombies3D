@@ -7,8 +7,6 @@ public class SceneManagement : MonoBehaviour
     public GameObject mainMenu;
     public GameObject selectionMenu;
 
-    public bool GameHasStarted = false;
-
     public void ReturnToMainMenu()
     {
         mainMenu.SetActive(true);
@@ -24,10 +22,6 @@ public class SceneManagement : MonoBehaviour
     public void StartGame(int sceneID)
     {
         SceneManager.LoadScene(sceneID);
-        if (sceneID == 1)
-        {
-            GameHasStarted = true;
-        }
     }
     public void MoveScene(int sceneID)
     {
