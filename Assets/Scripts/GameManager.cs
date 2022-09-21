@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> prefabs;
     public List<List<GameObject>> teams = new List<List<GameObject>>();
+    public Transform[] startPoints;
 
     private void Start()
     {
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
             for (int z = 0; z < PlayerAmounts.ZombieAmount; z++) 
             {
                 GameObject thisTeam = Instantiate(prefabs[Random.Range(0,prefabs.Count)], Vector3.zero, Quaternion.identity);
-                teams[i].Insert(z,thisTeam);
+                teams[i].Insert(z ,thisTeam);
             }
         }
     }
