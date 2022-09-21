@@ -232,51 +232,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &101105879
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 101105881}
-  - component: {fileID: 101105880}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &101105880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101105879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c25dd8fb7f36bf4e9232674cd1a5289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSelector: {fileID: 0}
---- !u!4 &101105881
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101105879}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 441.67664, y: 210.06671, z: -111.994965}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &229294005
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,6 +932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 542927966}
   selectionMenu: {fileID: 54084511}
+  GameHasStarted: 0
 --- !u!1 &1194215882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,7 +1556,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1075062954}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
-        m_MethodName: MoveScene
+        m_MethodName: StartGame
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2021,7 +1977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 487586, guid: 634130a0b5997d14da4e9e1b1ef75f6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7327175
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 487586, guid: 634130a0b5997d14da4e9e1b1ef75f6a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2029,11 +1985,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 487586, guid: 634130a0b5997d14da4e9e1b1ef75f6a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.802681
+      value: 7.556
       objectReference: {fileID: 0}
     - target: {fileID: 487586, guid: 634130a0b5997d14da4e9e1b1ef75f6a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6427405
+      value: 0.58698213
       objectReference: {fileID: 0}
     - target: {fileID: 487586, guid: 634130a0b5997d14da4e9e1b1ef75f6a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2041,7 +1997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 487586, guid: 634130a0b5997d14da4e9e1b1ef75f6a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.766084
+      value: -0.80959994
       objectReference: {fileID: 0}
     - target: {fileID: 487586, guid: 634130a0b5997d14da4e9e1b1ef75f6a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2053,7 +2009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 487586, guid: 634130a0b5997d14da4e9e1b1ef75f6a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -100.007
+      value: -108.114
       objectReference: {fileID: 0}
     - target: {fileID: 487586, guid: 634130a0b5997d14da4e9e1b1ef75f6a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2156,7 +2112,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1980531735}
+        m_TargetAssemblyTypeName: PlayerSelector, Assembly-CSharp
+        m_MethodName: OnValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1980531735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2171,7 +2139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 1980531734}
   sliderText: {fileID: 2125416348}
-  amountOfPlayers: 0
 --- !u!1 &1991301228
 GameObject:
   m_ObjectHideFlags: 0

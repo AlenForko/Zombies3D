@@ -7,17 +7,14 @@ public class PlayerSelector : MonoBehaviour
     public Slider slider;
     public TextMeshProUGUI sliderText;
 
-    public int amountOfPlayers;
-    private int maxPlayerAmount = 4;
-
     private void Awake()
     {
-        slider.maxValue = maxPlayerAmount;
+        slider.maxValue = PlayerAmounts.ZombieAmount;
     }
 
-    private void Update()
+    public void OnValueChange()
     {
-        slider.value += amountOfPlayers;
+        PlayerAmounts.PlayerAmount = (int)slider.value;
         sliderText.text = " " + slider.value;
     }
 }
