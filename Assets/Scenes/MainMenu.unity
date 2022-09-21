@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &54084512
 RectTransform:
   m_ObjectHideFlags: 0
@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c25dd8fb7f36bf4e9232674cd1a5289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSelector: {fileID: 0}
 --- !u!4 &101105881
 Transform:
   m_ObjectHideFlags: 0
@@ -371,7 +372,6 @@ GameObject:
   - component: {fileID: 361546331}
   - component: {fileID: 361546330}
   - component: {fileID: 361546329}
-  - component: {fileID: 361546332}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 361546332}
+      - m_Target: {fileID: 1075062954}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
@@ -552,18 +552,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361546327}
   m_CullTransparentMesh: 1
---- !u!114 &361546332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361546327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b157c2fe43eb144da172338e8fb4965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &453591991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -640,7 +628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &542927967
 RectTransform:
   m_ObjectHideFlags: 0
@@ -830,7 +818,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -1, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -884,6 +872,7 @@ GameObject:
   - component: {fileID: 1075062952}
   - component: {fileID: 1075062951}
   - component: {fileID: 1075062950}
+  - component: {fileID: 1075062954}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -974,6 +963,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1075062954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075062949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b157c2fe43eb144da172338e8fb4965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenu: {fileID: 542927966}
+  selectionMenu: {fileID: 54084511}
 --- !u!1 &1194215882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,7 +1199,6 @@ GameObject:
   - component: {fileID: 1240576148}
   - component: {fileID: 1240576150}
   - component: {fileID: 1240576149}
-  - component: {fileID: 1240576152}
   - component: {fileID: 1240576151}
   m_Layer: 5
   m_Name: PlayButton
@@ -1366,10 +1368,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1240576152}
+      - m_Target: {fileID: 1075062954}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
-        m_MethodName: MoveScene
-        m_Mode: 3
+        m_MethodName: SelectMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1378,18 +1380,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
---- !u!114 &1240576152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240576147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b157c2fe43eb144da172338e8fb4965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1372493401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,7 +1527,6 @@ GameObject:
   - component: {fileID: 1526413961}
   - component: {fileID: 1526413960}
   - component: {fileID: 1526413959}
-  - component: {fileID: 1526413958}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -1565,18 +1554,6 @@ RectTransform:
   m_AnchoredPosition: {x: -2, y: -78}
   m_SizeDelta: {x: 202.5799, y: 48.9829}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1526413958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526413956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b157c2fe43eb144da172338e8fb4965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1526413959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1620,7 +1597,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1526413960}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1075062954}
+        m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
+        m_MethodName: MoveScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1526413960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2217,7 +2206,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2402,7 +2391,6 @@ GameObject:
   - component: {fileID: 2100438498}
   - component: {fileID: 2100438497}
   - component: {fileID: 2100438496}
-  - component: {fileID: 2100438495}
   m_Layer: 5
   m_Name: ReturnButton
   m_TagString: Untagged
@@ -2430,18 +2418,6 @@ RectTransform:
   m_AnchoredPosition: {x: -2, y: -146}
   m_SizeDelta: {x: 202.5799, y: 48.9829}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2100438495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2100438493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b157c2fe43eb144da172338e8fb4965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2100438496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2485,7 +2461,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2100438497}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1075062954}
+        m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
+        m_MethodName: ReturnToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2100438497
 MonoBehaviour:
   m_ObjectHideFlags: 0

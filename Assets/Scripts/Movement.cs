@@ -3,7 +3,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
    public float speed = 2f;
-   private Rigidbody rbPlayer;
+   public Rigidbody rbPlayer;
    private CapsuleCollider playerCollider;
    public LayerMask groundLayer;
 
