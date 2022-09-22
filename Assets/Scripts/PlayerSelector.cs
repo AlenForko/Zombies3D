@@ -9,12 +9,17 @@ public class PlayerSelector : MonoBehaviour
 
     private void Awake()
     {
-        slider.maxValue = PlayerAmounts.ZombieAmount;
+        slider.maxValue = PlayerAmounts.maxAmount;
     }
 
-    public void OnValueChange()
+    public void OnValuePlayerChange()
     {
         PlayerAmounts.PlayerAmount = (int)slider.value;
+        sliderText.text = " " + slider.value;
+    }
+    public void OnValueZombieChange()
+    {
+        PlayerAmounts.ZombieAmount = (int)slider.value;
         sliderText.text = " " + slider.value;
     }
 }
