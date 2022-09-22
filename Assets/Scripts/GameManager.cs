@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> prefabs;
-    public List<List<GameObject>> teams = new List<List<GameObject>>();
+    private List<List<GameObject>> _teams = new List<List<GameObject>>();
     public GameObject[] startPoints;
 
     public Timer timer;
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerAmounts.PlayerAmount; i++)
         {
-            teams.Add(new List<GameObject>());
+            _teams.Add(new List<GameObject>());
             for (int z = 0; z < PlayerAmounts.ZombieAmount; z++)
             {   
                 //Calculates spawn angles of zombie players based on spawn points.
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
                 Vector3 pos = startPoints[z].transform.position + 6 * new Vector3(Mathf.Cos(spawnAngle), 0f, Mathf.Sin(spawnAngle));
                 
                 GameObject thisTeam = Instantiate(prefabs[Random.Range(0,prefabs.Count)], pos, Quaternion.identity);
-                teams[i].Insert(z ,thisTeam);
+                _teams[i].Insert(z ,thisTeam);
             }
         }
     }

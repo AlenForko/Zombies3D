@@ -4,15 +4,15 @@ public class Movement : MonoBehaviour
 {
    public float speed = 2f;
    public Rigidbody rbPlayer;
-   private CapsuleCollider playerCollider;
+   private CapsuleCollider _playerCollider;
    public LayerMask groundLayer;
 
    private Vector2 turn;
-   private float sensitivity = 2f;
+   private float _sensitivity = 2f;
 
    private void Start()
    {
-      playerCollider = GetComponent<CapsuleCollider>();
+      _playerCollider = GetComponent<CapsuleCollider>();
       rbPlayer = GetComponent<Rigidbody>();
       Cursor.lockState = CursorLockMode.Locked;
    }
@@ -20,7 +20,7 @@ public class Movement : MonoBehaviour
    private void LateUpdate()
    {
       //Rotate left and right with the mouse.
-      turn.x += Input.GetAxis("Mouse X") * sensitivity;
+      turn.x += Input.GetAxis("Mouse X") * _sensitivity;
       transform.localRotation = Quaternion.Euler(0, turn.x, 0);
 
       float uD = Input.GetAxisRaw("Horizontal");
@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
       Vector3 movement = transform.forward * lR + transform.right * uD;
       
       //Make a radius based on the player collider and checks if player is grounded.
-      float radius = playerCollider.radius * 0.9f;
+      float radius = _playerCollider.radius * 0.9f;
       Vector3 pos = transform.position + Vector3.up*(radius*0.9f);
       bool isGrounded = Physics.CheckSphere(pos, radius, groundLayer);
       

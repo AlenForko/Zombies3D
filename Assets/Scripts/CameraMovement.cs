@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    private Vector2 turn;
+    private Vector2 _turn;
 
-    private float maxY = -30f;
-    private float minY = 30f;
+    private float _maxY = -30f;
+    private float _minY = 30f;
 
     private void Update()
     {
-        turn.y += Input.GetAxis("Mouse Y");
-        turn.y = Mathf.Clamp(turn.y, maxY, minY);
-        transform.localRotation = Quaternion.Euler(-turn.y, 0, 0);
+        _turn.y += Input.GetAxis("Mouse Y");
+        _turn.y = Mathf.Clamp(_turn.y, _maxY, _minY);
+        transform.localRotation = Quaternion.Euler(-_turn.y, 0, 0);
     }
 }

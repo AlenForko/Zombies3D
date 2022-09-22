@@ -4,5 +4,5 @@ public static class PlayerAmounts
 
     public static int ZombieAmount = 0;
 
-    public static int maxAmount = 4;
+    public const int MaxAmount = 4;
 }
