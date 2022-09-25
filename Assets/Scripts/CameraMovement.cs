@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -7,8 +8,14 @@ public class CameraMovement : MonoBehaviour
     private float _maxY = -30f;
     private float _minY = 30f;
 
-    public Transform player;
-    public Vector3 offset;
+    private Transform player;
+    public GameManager GameManager;
+
+    public void SetCamera()
+    {
+        player = GameManager.currentPlayer.transform;
+    }
+
 
     private void FixedUpdate()
     {

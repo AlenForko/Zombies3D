@@ -8,7 +8,7 @@ public class Shooting : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Rigidbody newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             newBullet.AddForce(transform.up * _bulletSpeed, ForceMode.Impulse);

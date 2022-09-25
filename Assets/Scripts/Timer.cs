@@ -1,20 +1,30 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private float maxTime = 10.0f;
+    private float _maxTime = 5.0f;
+    private float _currentTime;
+    
+    public GameManager GameManager;
 
     public TextMeshProUGUI timeText;
-    
-    private void Update()
-    {
-        maxTime -= Time.deltaTime;
-        timeText.text = " " + (int)maxTime;
 
-        if (maxTime <= 0f)
+    private void Start()
+    {
+        _currentTime = _maxTime;
+    }
+
+    private void LateUpdate()
+    {
+        _currentTime -= Time.deltaTime;
+        timeText.text = " " + (int)_currentTime;
+    
+        if (_currentTime <= 0f)
         {
-            //End player turn.
+            GameManager.GoToNextPlayer();
+            _currentTime = _maxTime;
         }
     }
 }
