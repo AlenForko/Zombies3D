@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private float _maxTime = 10.0f;
+    private float maxTime = 10.0f;
 
     public TextMeshProUGUI timeText;
     
     private void Update()
     {
-        _maxTime -= Time.deltaTime;
-        timeText.text = " " + (int)_maxTime;
+        maxTime -= Time.deltaTime;
+        timeText.text = " " + (int)maxTime;
 
-        if (_maxTime <= 0f)
+        if (maxTime <= 0f)
         {
             //End player turn.
         }
