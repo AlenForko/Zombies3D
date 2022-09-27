@@ -5,6 +5,7 @@ using Cursor = UnityEngine.Cursor;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    private CameraMovement _cameraMovement;
 
     public static bool gameIsPaused = false;
 

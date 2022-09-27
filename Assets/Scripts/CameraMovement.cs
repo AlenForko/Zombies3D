@@ -5,8 +5,6 @@ public class CameraMovement : MonoBehaviour
 {
     private Vector2 _turn;
     private float _sensitivity = 2f;
-    private float _maxY = -2f;
-    private float _minY = 2f;
 
     private Transform player;
     public GameManager GameManager;

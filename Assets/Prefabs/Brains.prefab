@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8593687520959058423}
   - component: {fileID: 2322822770567342125}
   - component: {fileID: 2439920219575187426}
+  - component: {fileID: 3824973208947607301}
   m_Layer: 0
   m_Name: Brains
   m_TagString: Untagged
@@ -114,3 +115,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.34154695
   m_Center: {x: 0, y: 0.031000629, z: 0.07019643}
+--- !u!114 &3824973208947607301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8593687520957017031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca05668f9ce1b3478d790de561c139d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

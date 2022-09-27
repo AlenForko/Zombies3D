@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> prefabs;
     [SerializeField] private GameObject playerPrefabs;
-    [SerializeField] CameraMovement _cameraMovement;
+    [SerializeField] private CameraMovement _cameraMovement;
     private List<List<GameObject>> _teams = new List<List<GameObject>>();
     public GameObject[] startPoints;
     public GameObject currentPlayer;
@@ -49,20 +49,20 @@ public class GameManager : MonoBehaviour
 
         currentPlayer = _teams[0][0];
         _cameraMovement.SetCamera();
-        currentPlayer.transform.GetChild(0).GetComponent<Shooting>().enabled = true;
+        currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>().enabled = true;
         currentPlayer.GetComponent<Movement>().enabled = true;
         
     }
 
     public void GoToNextPlayer()
     {
-        currentPlayer.transform.GetChild(0).GetComponent<Shooting>().enabled = false;
+        currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>().enabled = false;
         killme[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = false;
         NextPlayerInTeam();
         NextTeam();
         _cameraMovement.SetCamera();
         killme[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = true;
-        currentPlayer.transform.GetChild(0).GetComponent<Shooting>().enabled = true;
+        currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>().enabled = true;
     }
 
 

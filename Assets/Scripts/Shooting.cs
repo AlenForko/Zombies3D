@@ -1,22 +1,32 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Shooting : MonoBehaviour
 {
     public Rigidbody[] bulletPrefab;
     private float _bulletSpeed = 10f;
-    
+
     private int _currentWeapon;
     public Transform[] weapons;
-    
+
+    public List<Transform> placeholder = new List<Transform>();
+
+    void Start()
+    {
+        _currentWeapon = 0;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ChangeWeapon(1);
+            ChangeWeapon(0);
         }
         else if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ChangeWeapon(0);
+            ChangeWeapon(1);
         }
         
         if (Input.GetKeyDown(KeyCode.Mouse0))
