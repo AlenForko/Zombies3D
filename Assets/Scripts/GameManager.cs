@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
             _teams.Add(new List<GameObject>());
             killme.Add(new List<Movement>());
             currentPlayerFromTeam.Add(0);
-            ds = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            //ds = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             for (int z = 0; z < PlayerAmounts.ZombieAmount; z++)
             {
 
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
                 GameObject thisTeam = Instantiate(prefabs[Random.Range(0, prefabs.Count)], pos, Quaternion.identity);
                 
                 thisTeam.transform.SetParent(player.transform);
-                player.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = ds;
+                //player.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = ds;
                 _teams[i].Add(player);
                 
                 killme[i].Add(player.GetComponent<Movement>());
@@ -49,20 +49,20 @@ public class GameManager : MonoBehaviour
 
         currentPlayer = _teams[0][0];
         _cameraMovement.SetCamera();
-        currentPlayer.transform.GetChild(0).GetChild(0).GetComponent<Shooting>().enabled = true;
+        currentPlayer.transform.GetChild(0).GetComponent<Shooting>().enabled = true;
         currentPlayer.GetComponent<Movement>().enabled = true;
         
     }
 
     public void GoToNextPlayer()
     {
-        currentPlayer.transform.GetChild(0).GetChild(0).GetComponent<Shooting>().enabled = false;
+        currentPlayer.transform.GetChild(0).GetComponent<Shooting>().enabled = false;
         killme[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = false;
         NextPlayerInTeam();
         NextTeam();
         _cameraMovement.SetCamera();
         killme[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = true;
-        currentPlayer.transform.GetChild(0).GetChild(0).GetComponent<Shooting>().enabled = true;
+        currentPlayer.transform.GetChild(0).GetComponent<Shooting>().enabled = true;
     }
 
 
