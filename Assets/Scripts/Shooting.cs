@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -7,6 +8,7 @@ public class Shooting : MonoBehaviour
 {
     public Rigidbody[] bulletPrefab;
     private float _bulletSpeed = 7f;
+    public bool hasShot = false;
 
     private int _currentWeapon;
     public Transform[] weapons;
@@ -29,10 +31,11 @@ public class Shooting : MonoBehaviour
             ChangeWeapon(1);
         }
         
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !hasShot)
         {
             Rigidbody newBullet = Instantiate(bulletPrefab[_currentWeapon], transform.position, Quaternion.identity);
             newBullet.AddForce(transform.up * _bulletSpeed, ForceMode.Impulse);
+            hasShot = true;
         }
     }
 
