@@ -33,9 +33,9 @@ public class GameManager : MonoBehaviour
 
                 //Calculates spawn angles of zombie players based on spawn points.
                 float spawnAngle = (120f / PlayerAmounts.PlayerAmount) * z;
-                Vector3 pos = startPoints[i].transform.position + 6 * new Vector3(Mathf.Cos(spawnAngle), 0f, Mathf.Sin(spawnAngle));
+                Vector3 pos = startPoints[i].transform.position + 2 * new Vector3(Mathf.Cos(spawnAngle), 0f, Mathf.Sin(spawnAngle));
                 
-                GameObject player = Instantiate(playerPrefabs, pos, Quaternion.identity);
+                GameObject player = Instantiate(playerPrefabs, pos, transform.rotation);
                 GameObject thisTeam = Instantiate(prefabs[Random.Range(0, prefabs.Count)], pos, Quaternion.identity);
                 
                 thisTeam.transform.SetParent(player.transform);
