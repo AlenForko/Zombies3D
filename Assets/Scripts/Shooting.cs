@@ -6,7 +6,7 @@ using UnityEngine.XR;
 public class Shooting : MonoBehaviour
 {
     public Rigidbody[] bulletPrefab;
-    private float _bulletSpeed = 10f;
+    private float _bulletSpeed = 7f;
 
     private int _currentWeapon;
     public Transform[] weapons;

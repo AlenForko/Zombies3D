@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
@@ -9,9 +10,9 @@ public class CollisionDetection : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            StartCoroutine(WaitBeforeDestroy());
         }
     }
 
@@ -21,5 +22,11 @@ public class CollisionDetection : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator WaitBeforeDestroy()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }

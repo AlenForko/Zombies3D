@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private float _maxTime = 5.0f;
+    private float _maxTime = 50.0f;
     private float _currentTime;
     
     public GameManager GameManager;

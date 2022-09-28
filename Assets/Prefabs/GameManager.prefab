@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c25dd8fb7f36bf4e9232674cd1a5289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSelector: {fileID: 0}
-  sceneManagement: {fileID: 0}
   prefabs:
   - {fileID: 193508, guid: e7d16897c7e623049889ee327d7ec1c9, type: 3}
   - {fileID: 140806, guid: e9ba2677fd8e8c74aa0b91971286ab13, type: 3}
   - {fileID: 119662, guid: a5dadc47e554b324a87386cea088486c, type: 3}
+  playerPrefabs: {fileID: 0}
+  _cameraMovement: {fileID: 0}
+  startPoints: []
+  currentPlayer: {fileID: 0}
