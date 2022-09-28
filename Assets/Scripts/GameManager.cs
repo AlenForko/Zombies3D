@@ -14,35 +14,29 @@ public class GameManager : MonoBehaviour
     public GameObject currentPlayer;
     private int currentTeam = 0;
     private List<int> currentPlayerFromTeam = new List<int>();
+    private List<List<Movement>> _movement = new List<List<Movement>>();
 
-
-    private List<List<Movement>> killme = new List<List<Movement>>();
-
-
-    private Color ds;
     private void Start()
     {
         for (int i = 0; i < PlayerAmounts.PlayerAmount; i++)
         {
             _teams.Add(new List<GameObject>());
-            killme.Add(new List<Movement>());
+            _movement.Add(new List<Movement>());
             currentPlayerFromTeam.Add(0);
-            //ds = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             for (int z = 0; z < PlayerAmounts.ZombieAmount; z++)
             {
 
                 //Calculates spawn angles of zombie players based on spawn points.
                 float spawnAngle = (120f / PlayerAmounts.PlayerAmount) * z;
-                Vector3 pos = startPoints[i].transform.position + 2 * new Vector3(Mathf.Cos(spawnAngle), 0f, Mathf.Sin(spawnAngle));
+                Vector3 pos = startPoints[i].transform.position + 3 * new Vector3(Mathf.Cos(spawnAngle), 0f, Mathf.Sin(spawnAngle));
                 
-                GameObject player = Instantiate(playerPrefabs, pos, transform.rotation);
-                GameObject thisTeam = Instantiate(prefabs[Random.Range(0, prefabs.Count)], pos, Quaternion.identity);
+                GameObject player = Instantiate(playerPrefabs, pos, startPoints[i].transform.rotation);
+                GameObject thisTeam = Instantiate(prefabs[Random.Range(0, prefabs.Count)], pos, startPoints[i].transform.rotation);
                 
                 thisTeam.transform.SetParent(player.transform);
-                //player.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = ds;
                 _teams[i].Add(player);
                 
-                killme[i].Add(player.GetComponent<Movement>());
+                _movement[i].Add(player.GetComponent<Movement>());
                 
             }
         }
@@ -57,15 +51,14 @@ public class GameManager : MonoBehaviour
     public void GoToNextPlayer()
     {
         currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>().enabled = false;
-        killme[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = false;
+        _movement[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = false;
         NextPlayerInTeam();
         NextTeam();
         _cameraMovement.SetCamera();
-        killme[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = true;
+        _movement[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = true;
         currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>().enabled = true;
     }
-
-
+    
     void NextTeam()
     {
         currentTeam++;
@@ -78,7 +71,6 @@ public class GameManager : MonoBehaviour
     }
      void NextPlayerInTeam()
      {
-         
          currentPlayerFromTeam[currentTeam]++;
          
          if (currentPlayerFromTeam[currentTeam] == PlayerAmounts.ZombieAmount)
