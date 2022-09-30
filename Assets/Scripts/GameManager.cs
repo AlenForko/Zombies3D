@@ -53,15 +53,15 @@ public class GameManager : MonoBehaviour
 
     public void GoToNextPlayer()
     {
-        var shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
-        shoot.enabled = false;
-        shoot.hasShot = false;
-        _movement[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = false;
-        NextPlayerInTeam();
-        NextTeam();
-        _cameraMovement.SetCamera();
-        _movement[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = true;
-        shoot.enabled = true;
+         var shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
+         shoot.enabled = false;
+         shoot.hasShot = false;
+         _movement[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = false;
+         NextPlayerInTeam();
+         NextTeam();
+         _cameraMovement.SetCamera();
+         _movement[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = true;
+         shoot.enabled = true;
     }
 
     void NextTeam()
