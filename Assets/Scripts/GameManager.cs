@@ -15,15 +15,13 @@ public class GameManager : MonoBehaviour
     private int currentTeam = 0;
     private List<int> currentPlayerFromTeam = new List<int>();
     private List<List<Movement>> _movement = new List<List<Movement>>();
-    private List<List<Shooting>> _shooting = new List<List<Shooting>>();
     public TeamInfo teamInfo;
     private void Start()
     {
         for (int i = 0; i < PlayerAmounts.PlayerAmount; i++)
         {
             _teams.Add(new List<GameObject>());
-            _movement.Add(new List<Movement>());
-            _shooting.Add(new List<Shooting>());
+            _movement.Add(new List<Movement>()); 
             currentPlayerFromTeam.Add(0);
             for (int z = 0; z < PlayerAmounts.ZombieAmount; z++)
             {
@@ -39,7 +37,6 @@ public class GameManager : MonoBehaviour
                 thisTeam.transform.SetParent(player.transform);
                 _teams[i].Add(player);
                 _movement[i].Add(player.GetComponent<Movement>());
-                _shooting[i].Add(player.GetComponent<Shooting>());
                 player.GetComponent<TeamInfo>().playerInfo.text = "Zombie " + (z + 1);
                 player.GetComponent<TeamInfo>().teamInfo.text = "Team " + (i + 1);
             }
@@ -61,6 +58,7 @@ public class GameManager : MonoBehaviour
          NextTeam();
          _cameraMovement.SetCamera();
          _movement[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = true;
+         shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
          shoot.enabled = true;
     }
 
