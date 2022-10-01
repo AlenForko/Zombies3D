@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,7 +13,7 @@ public class GameManager : MonoBehaviour
     private int currentTeam = 0;
     private List<int> currentPlayerFromTeam = new List<int>();
     private List<List<Movement>> _movement = new List<List<Movement>>();
-    public TeamInfo teamInfo;
+
     private void Start()
     {
         for (int i = 0; i < PlayerAmounts.PlayerAmount; i++)
@@ -50,12 +48,17 @@ public class GameManager : MonoBehaviour
 
     public void GoToNextPlayer()
     {
+         //Disable components for current player.
          var shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
          shoot.enabled = false;
          shoot.hasShot = false;
          _movement[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = false;
+         
+         //Change player.
          NextPlayerInTeam();
          NextTeam();
+         
+         //Enable components for next player.
          _cameraMovement.SetCamera();
          _movement[currentTeam][currentPlayerFromTeam[currentTeam]].enabled = true;
          shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();

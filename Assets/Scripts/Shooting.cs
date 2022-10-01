@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class Shooting : MonoBehaviour
 {
@@ -12,8 +8,6 @@ public class Shooting : MonoBehaviour
 
     private int _currentWeapon;
     public Transform[] weapons;
-
-    public List<Transform> placeholder = new List<Transform>();
 
     void Start()
     {

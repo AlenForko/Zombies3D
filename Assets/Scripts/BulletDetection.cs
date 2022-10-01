@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CollisionDetection : MonoBehaviour
+public class BulletDetection : MonoBehaviour
 {
     private void Update()
     {
@@ -10,9 +10,14 @@ public class CollisionDetection : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Ground"))
         {
             StartCoroutine(WaitBeforeDestroy());
+        }
+        else if (collision.collider.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerStats>().TakeDamage(20);
+            Destroy(gameObject);
         }
     }
 
