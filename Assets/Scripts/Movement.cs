@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -10,11 +11,20 @@ public class Movement : MonoBehaviour
    private Vector2 turn;
    private float _sensitivity = 2f;
 
+   public Animator animator;
+   bool isMoving;
+
    private void Start()
    {
       _playerCollider = GetComponent<CapsuleCollider>();
       rbPlayer = GetComponent<Rigidbody>();
       Cursor.lockState = CursorLockMode.Locked;
+   }
+
+   private void Update()
+   {
+      isMoving = Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0;
+      animator.SetBool("isMoving", isMoving);
    }
 
    private void LateUpdate()
@@ -26,6 +36,7 @@ public class Movement : MonoBehaviour
       float uD = Input.GetAxisRaw("Horizontal");
       float lR = Input.GetAxisRaw("Vertical");
       Vector3 movement = transform.forward * lR + transform.right * uD;
+      
       
       //Make a radius based on the player collider and checks if player is grounded.
       float radius = _playerCollider.radius * 0.9f;
@@ -39,5 +50,6 @@ public class Movement : MonoBehaviour
       }
       
       rbPlayer.MovePosition(rbPlayer.position + movement * (speed * Time.deltaTime));
+      
    }
 }

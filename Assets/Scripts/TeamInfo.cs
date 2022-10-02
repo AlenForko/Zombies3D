@@ -5,6 +5,4 @@ public class TeamInfo : MonoBehaviour
 {
     public TextMeshProUGUI teamInfo;
     public TextMeshProUGUI playerInfo;
-    
-    
 }
