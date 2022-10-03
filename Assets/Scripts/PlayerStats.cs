@@ -15,7 +15,8 @@ public class PlayerStats : MonoBehaviour
 
     public int teamNumber;
     public int zombieNumber;
-    
+
+    public Movement movement;
     private void Start()
     {
         currentHealth = maxHealth;
@@ -36,17 +37,26 @@ public class PlayerStats : MonoBehaviour
         currentHealth -= dmg;
         
         healthBar.SetHealth(currentHealth);
+        //animator.Play("Z_damage");
     }
     
     IEnumerator Death()
     {
         isDead = true;
         animator.SetBool("isDead", isDead);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
 
-        //_gameManager.RemovePlayerFromTeam(teamNumber);
-        //_gameManager.teams[teamNumber].Find(this.gameObject);
-        GameManager.teams[teamNumber].Remove(this.gameObject);
+        for (int i = 0; i < GameManager.teams.Count; i++)
+        {
+            GameManager.teams[i].Remove(this.gameObject);
+            GameManager._movement[i].Remove(movement);
+        }
+
+        GameManager.CheckTeamCount();
+        if (GameManager.currentPlayerFromTeam[teamNumber] > 0)
+        {
+            GameManager.currentPlayerFromTeam[teamNumber]--;
+        }
         Destroy(gameObject);
     }
 }

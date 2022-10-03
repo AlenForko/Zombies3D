@@ -743,9 +743,9 @@ MonoBehaviour:
   healthBar: {fileID: 1804533127865151818}
   isDead: 0
   animator: {fileID: 0}
-  _gameManager: {fileID: 3747483167369333577, guid: d2d5c56565c64e047a78a3184c8fa515, type: 3}
   teamNumber: 0
   zombieNumber: 0
+  movement: {fileID: 0}
 --- !u!1 &1452867977171577914
 GameObject:
   m_ObjectHideFlags: 0

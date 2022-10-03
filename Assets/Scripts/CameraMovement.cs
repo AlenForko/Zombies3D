@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    private Transform player;
-    public GameManager GameManager;
+    private Transform _player;
+    public GameManager gameManager;
 
     public void SetCamera()
     {
-        player = GameManager.currentPlayer.transform;
+        _player = GameManager.currentPlayer.transform;
     }
 
 
@@ -19,8 +19,8 @@ public class CameraMovement : MonoBehaviour
 
     private void FollowPlayer()
     {
-        Vector3 pos = player.transform.position - player.transform.forward * 10f + transform.up * 5f;
+        Vector3 pos = _player.transform.position - _player.transform.forward * 10f + transform.up * 5f;
         transform.position = pos;
-        transform.LookAt(player);
+        transform.LookAt(_player);
     }
 }

@@ -8,13 +8,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> prefabs;
     [SerializeField] private GameObject playerPrefabs;
     [SerializeField] private CameraMovement _cameraMovement;
+   
     private PlayerStats _playerStats;
-    public static List<List<GameObject>> teams = new List<List<GameObject>>();
     public GameObject[] startPoints;
-    public GameObject currentPlayer;
-    private int _currentTeam = 0;
-    public List<int> currentPlayerFromTeam = new List<int>();
-    private List<List<Movement>> _movement = new List<List<Movement>>();
+    public static GameObject currentPlayer; 
+    public static int _currentTeam = 0;
+    
+    public static List<int> currentPlayerFromTeam = new List<int>();
+    public static List<List<Movement>> _movement = new List<List<Movement>>();
+    public static List<List<GameObject>> teams = new List<List<GameObject>>();
 
     private void Start()
     {
@@ -56,33 +58,35 @@ public class GameManager : MonoBehaviour
     public void GoToNextPlayer()
     {
         //Disable components for current player.
-         var shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
-         shoot.enabled = false;
-         shoot.hasShot = false;
-         _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].enabled = false;
-         _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].animator.SetBool("isMoving", false);
+        Shooting shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
+        shoot.enabled = false;
+        shoot.hasShot = false;
+        
+        _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].enabled = false;
+        _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].animator.SetBool("isMoving", false);
          
-         //Change player.
-         NextPlayerInTeam();
-         NextTeam();
+        //Change player.
+        NextPlayerInTeam();
+        NextTeam();
          
-         //Enable components for next player.
-         _cameraMovement.SetCamera();
-         _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].enabled = true;
-         _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].animator.SetBool("isMoving", true);
-         shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
-         shoot.enabled = true;
+        //Enable components for next player.
+        _cameraMovement.SetCamera(); 
+        _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].enabled = true;
+        _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].animator.SetBool("isMoving", true);
+        shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
+        shoot.enabled = true;
     }
 
     void NextTeam()
     {
         _currentTeam++;
 
-        if (_currentTeam == PlayerAmounts.PlayerAmount)
+        if (_currentTeam == teams.Count)
         {
-            _currentTeam %= PlayerAmounts.PlayerAmount;
-        }
+            _currentTeam %= teams.Count;  
 
+        }
+        
         currentPlayer = teams[_currentTeam][currentPlayerFromTeam[_currentTeam]];
     }
 
@@ -90,11 +94,28 @@ public class GameManager : MonoBehaviour
     {
         currentPlayerFromTeam[_currentTeam]++;
 
-        if (currentPlayerFromTeam[_currentTeam] == PlayerAmounts.ZombieAmount)
+        if (currentPlayerFromTeam[_currentTeam] == teams[_currentTeam].Count)
         {
-            currentPlayerFromTeam[_currentTeam] %= PlayerAmounts.ZombieAmount;
+            currentPlayerFromTeam[_currentTeam] %= teams[_currentTeam].Count;
         }
-
+        
         currentPlayer = teams[_currentTeam][currentPlayerFromTeam[_currentTeam]];
+    }
+
+    public static void CheckTeamCount()
+    {
+        for (int i = 0; i < teams.Count; i++)
+        {
+            if (teams[i].Count==0)
+            {
+                teams.RemoveAt(i);
+                _movement.RemoveAt(i);
+                _currentTeam--;
+                if (_currentTeam<0)
+                {
+                    _currentTeam = 0;
+                }
+            }
+        }
     }
 }
