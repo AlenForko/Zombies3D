@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     {
         _currentTeam++;
 
-        if (_currentTeam == teams.Count)
+        if (_currentTeam >= teams.Count)
         {
             _currentTeam %= teams.Count;  
 
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
     {
         currentPlayerFromTeam[_currentTeam]++;
 
-        if (currentPlayerFromTeam[_currentTeam] == teams[_currentTeam].Count)
+        if (currentPlayerFromTeam[_currentTeam] >= teams[_currentTeam].Count)
         {
             currentPlayerFromTeam[_currentTeam] %= teams[_currentTeam].Count;
         }
