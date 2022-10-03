@@ -3,7 +3,7 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     public Rigidbody[] bulletPrefab;
-    private float _bulletSpeed = 7f;
+    private float _bulletSpeed = 10f;
     public bool hasShot = false;
 
     private int _currentWeapon;
@@ -27,8 +27,8 @@ public class Shooting : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Mouse0) && !hasShot)
         {
-            Rigidbody newBullet = Instantiate(bulletPrefab[_currentWeapon], transform.position, Quaternion.identity);
-            newBullet.AddForce(transform.up * _bulletSpeed, ForceMode.Impulse);
+            Rigidbody newBullet = Instantiate(bulletPrefab[_currentWeapon], transform.position, transform.rotation);
+            newBullet.AddForce(transform.forward * _bulletSpeed, ForceMode.Impulse);
             hasShot = true;
         }
     }

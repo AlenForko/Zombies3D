@@ -37,7 +37,7 @@ public class PlayerStats : MonoBehaviour
         currentHealth -= dmg;
         
         healthBar.SetHealth(currentHealth);
-        //animator.Play("Z_damage");
+        animator.SetTrigger("isHit");
     }
     
     IEnumerator Death()

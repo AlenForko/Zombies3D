@@ -17,7 +17,7 @@ public class BulletDetection : MonoBehaviour
         else if (collision.collider.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerStats>().TakeDamage(20);
-            Destroy(gameObject);
+            StartCoroutine(WaitBeforeDestroy());
         }
     }
 
@@ -31,7 +31,7 @@ public class BulletDetection : MonoBehaviour
 
     IEnumerator WaitBeforeDestroy()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
 }
