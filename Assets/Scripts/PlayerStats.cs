@@ -41,7 +41,7 @@ public class PlayerStats : MonoBehaviour
     IEnumerator Death()
     {
         isDead = true;
-        animator.SetBool("isDead", isDead);
+        animator.Play("Z_death_A");
         yield return new WaitForSeconds(1f);
 
         for (int i = 0; i < GameManager.teams.Count; i++)

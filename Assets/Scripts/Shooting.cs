@@ -14,6 +14,7 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         _currentWeapon = 0;
+        weaponDamage = 20;
     }
 
     void Update()

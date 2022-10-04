@@ -17,6 +17,7 @@ public class PlayerSelector : MonoBehaviour
     {
         PlayerAmounts.PlayerAmount = (int)slider.value;
         sliderText.text = " " + slider.value;
+        slider.minValue = 2;
     }
     public void OnValueZombieChange()
     {

@@ -638,6 +638,7 @@ GameObject:
   - component: {fileID: 1452867976869978425}
   - component: {fileID: 4918156453736136203}
   - component: {fileID: 3071260695825272294}
+  - component: {fileID: 1702488776070879164}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -746,6 +747,18 @@ MonoBehaviour:
   teamNumber: 0
   zombieNumber: 0
   movement: {fileID: 0}
+--- !u!114 &1702488776070879164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452867976869978426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb63f6baa8f6d6b45bf9c87672b547b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1452867977171577914
 GameObject:
   m_ObjectHideFlags: 0
