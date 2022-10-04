@@ -12,13 +12,17 @@ public class GameManager : MonoBehaviour
     public GameObject[] startPoints;
     public static GameObject currentPlayer; 
     public static int _currentTeam = 0;
-    
-    public static List<int> currentPlayerFromTeam = new List<int>();
-    public static List<List<Movement>> _movement = new List<List<Movement>>();
-    public static List<List<GameObject>> teams = new List<List<GameObject>>();
+
+    public static List<int> currentPlayerFromTeam;
+    public static List<List<Movement>> _movement;
+    public static List<List<GameObject>> teams;
 
     private void Start()
     {
+        currentPlayerFromTeam = new List<int>();
+        _movement = new List<List<Movement>>();
+        teams = new List<List<GameObject>>();
+        
         for (int i = 0; i < PlayerAmounts.PlayerAmount; i++)
         {
             teams.Add(new List<GameObject>());
