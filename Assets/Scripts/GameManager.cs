@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     {
         //Disable components for current player.
         Shooting shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
-        shoot.enabled = false;
+        shoot.enabled = false; 
         shoot.hasShot = false;
         
         _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].enabled = false;
@@ -81,14 +81,14 @@ public class GameManager : MonoBehaviour
         //Change player.
         NextPlayerInTeam();
         NextTeam();
-         
+                           
         //Enable components for next player.
         _cameraMovement.SetCamera(); 
         _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].enabled = true;
         _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].animator.SetBool("isMoving", true);
-        shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
-        shoot.enabled = true;
-    }
+        var shooting = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
+        shooting.enabled = true;
+        }
 
     void NextTeam()
     {

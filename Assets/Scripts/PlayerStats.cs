@@ -35,7 +35,7 @@ public class PlayerStats : MonoBehaviour
         currentHealth -= Shooting.weaponDamage;
         
         healthBar.SetHealth(currentHealth);
-        animator.SetTrigger("isHit");
+        animator.Play("Z_damage");
     }
     
     IEnumerator Death()

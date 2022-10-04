@@ -17,8 +17,12 @@ public class CameraMovement : MonoBehaviour
 
     private void FollowPlayer()
     {
-        Vector3 pos = _player.transform.position - _player.transform.forward * 10f + transform.up * 5f;
-        transform.position = pos;
-        transform.LookAt(_player);
+        if (_player != null)
+        {
+             Vector3 pos = _player.transform.position - _player.transform.forward * 10f + transform.up * 5f;
+             transform.position = pos;
+             transform.LookAt(_player);
+        }
+       
     }
 }

@@ -2,7 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 public class BulletDetection : MonoBehaviour
-{
+{ 
+    public Shooting owner;
     private void Update()
     {
         OutOfBounds();
@@ -16,10 +17,15 @@ public class BulletDetection : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerStats>().TakeDamage();
-            Destroy(gameObject);
+            if (owner != collision.gameObject.transform.GetChild(0).GetChild(2).GetComponent<Shooting>())
+            {
+                collision.gameObject.GetComponent<PlayerStats>().TakeDamage();
+                Destroy(gameObject);
+            }
         }
     }
+
+   
 
     private void OutOfBounds()
     {

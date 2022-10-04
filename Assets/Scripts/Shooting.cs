@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
@@ -32,6 +33,8 @@ public class Shooting : MonoBehaviour
         {
             Rigidbody newBullet = Instantiate(bulletPrefab[_currentWeapon], transform.position, transform.rotation);
             newBullet.AddForce(transform.forward * _bulletSpeed, ForceMode.Impulse);
+            BulletDetection bulletDetection = newBullet.GetComponent<BulletDetection>();
+            bulletDetection.owner = this;
             hasShot = true;
         }
     }
