@@ -30,9 +30,9 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage()
     {
-        currentHealth -= dmg;
+        currentHealth -= Shooting.weaponDamage;
         
         healthBar.SetHealth(currentHealth);
         animator.SetTrigger("isHit");

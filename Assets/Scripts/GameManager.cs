@@ -86,8 +86,7 @@ public class GameManager : MonoBehaviour
 
         if (_currentTeam >= teams.Count)
         {
-            _currentTeam %= teams.Count;  
-
+            _currentTeam %= teams.Count;
         }
         
         currentPlayer = teams[_currentTeam][currentPlayerFromTeam[_currentTeam]];

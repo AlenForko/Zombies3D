@@ -8,6 +8,7 @@ public class Shooting : MonoBehaviour
 
     private int _currentWeapon;
     public Transform[] weapons;
+    public static int weaponDamage;
 
     void Start()
     {
@@ -19,10 +20,12 @@ public class Shooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeWeapon(0);
+            weaponDamage = 20;
         }
         else if(Input.GetKeyDown(KeyCode.Alpha2))
         {
             ChangeWeapon(1);
+            weaponDamage = 50;
         }
         
         if (Input.GetKeyDown(KeyCode.Mouse0) && !hasShot)

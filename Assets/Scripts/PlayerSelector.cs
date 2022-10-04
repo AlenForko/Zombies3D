@@ -10,6 +10,7 @@ public class PlayerSelector : MonoBehaviour
     private void Awake()
     {
         slider.maxValue = PlayerAmounts.MaxAmount;
+        slider.minValue = 1;
     }
 
     public void OnValuePlayerChange()
