@@ -41,11 +41,13 @@ public class Movement : MonoBehaviour
       float radius = _playerCollider.radius * 0.9f;
       Vector3 pos = transform.position + Vector3.up*(radius*0.9f);
       bool isGrounded = Physics.CheckSphere(pos, radius, groundLayer);
+      animator.SetBool("isGrounded", isGrounded);
       
       //Jump function.
       if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
       {
          rbPlayer.AddForce(Vector3.up * 300f, ForceMode.Force);
+         animator.Play("Z_jump_A_start");
       }
       
       rbPlayer.MovePosition(rbPlayer.position + movement * (speed * Time.deltaTime));
