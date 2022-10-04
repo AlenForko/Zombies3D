@@ -33,10 +33,7 @@ public class SceneManagement : MonoBehaviour
     {
         SceneManager.LoadScene(sceneID);
     }
-    public void MoveScene(int sceneID)
-    {
-        SceneManager.LoadScene(sceneID);
-    }
+    
 
     public void ExitGame()
     {

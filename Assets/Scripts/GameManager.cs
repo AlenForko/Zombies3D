@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -56,6 +58,14 @@ public class GameManager : MonoBehaviour
         _cameraMovement.SetCamera();
         currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>().enabled = true;
         currentPlayer.GetComponent<Movement>().enabled = true;
+    }
+
+    private void Update()
+    {
+        if (teams.Count == 1)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
     public void GoToNextPlayer()
