@@ -1,10 +1,9 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private float _maxTime =2.0f;
+    private float _maxTime = 5.0f;
     public static float _currentTime;
     
     public GameManager GameManager;

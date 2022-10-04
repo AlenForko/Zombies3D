@@ -5315,6 +5315,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: w_bone
       objectReference: {fileID: 0}
+    - target: {fileID: 4937840132129268896, guid: 3127f801e8063fe4a9a815d076a373c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4937840132129346728, guid: 3127f801e8063fe4a9a815d076a373c0, type: 3}
       propertyPath: m_RootOrder
       value: 0

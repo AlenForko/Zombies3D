@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -44,7 +42,7 @@ public class PlayerStats : MonoBehaviour
     {
         isDead = true;
         animator.SetBool("isDead", isDead);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
 
         for (int i = 0; i < GameManager.teams.Count; i++)
         {

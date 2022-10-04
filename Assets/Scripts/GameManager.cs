@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -111,7 +110,7 @@ public class GameManager : MonoBehaviour
                 teams.RemoveAt(i);
                 _movement.RemoveAt(i);
                 _currentTeam--;
-                if (_currentTeam<0)
+                if (_currentTeam < 0)
                 {
                     _currentTeam = 0;
                 }
