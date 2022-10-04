@@ -3,7 +3,6 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     private Transform _player;
-    public GameManager gameManager;
 
     public void SetCamera()
     {
