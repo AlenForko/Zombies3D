@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     private void LateUpdate()
     {
         _currentTime -= Time.deltaTime;
-        timeText.text = " " + (int)_currentTime;
+        timeText.text = "Time left: " + (int)_currentTime + " ";
     
         if (_currentTime <= 0f)
         {

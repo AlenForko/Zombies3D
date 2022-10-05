@@ -30,7 +30,7 @@ public class Shooting : MonoBehaviour
             weaponDamage = 50;
         }
         
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !hasShot)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !hasShot && !PauseMenu.gameIsPaused)
         {
             Rigidbody newBullet = Instantiate(bulletPrefab[_currentWeapon], transform.position, transform.rotation);
             newBullet.AddForce(transform.forward * _bulletSpeed, ForceMode.Impulse);

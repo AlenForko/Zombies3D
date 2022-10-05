@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -44,13 +45,15 @@ public class Movement : MonoBehaviour
       animator.SetBool("isGrounded", isGrounded);
       
       //Jump function.
-      if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+      if(Input.GetKeyDown(KeyCode.Space) && isGrounded && !PauseMenu.gameIsPaused)
       {
          rbPlayer.AddForce(Vector3.up * 300f, ForceMode.Force);
          animator.Play("Z_jump_A_start");
       }
       
-      rbPlayer.MovePosition(rbPlayer.position + movement * (speed * Time.deltaTime));
-      
+      //rbPlayer.MovePosition(rbPlayer.position + movement * (speed * Time.deltaTime));
+      float y = rbPlayer.velocity.y;
+      Vector3 movVector = new Vector3(movement.x * speed, y,movement.z * speed);
+      rbPlayer.velocity = movVector;
    }
 }

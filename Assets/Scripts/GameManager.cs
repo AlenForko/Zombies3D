@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] startPoints;
     public static GameObject currentPlayer; 
     public static int _currentTeam;
+    public static bool playerSwitched;
 
     public static List<int> currentPlayerFromTeam;
     public static List<List<Movement>> _movement;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        PauseMenu.gameIsPaused = false;
         _currentTeam = 0;
         currentPlayerFromTeam = new List<int>();
         _movement = new List<List<Movement>>();
@@ -80,6 +82,7 @@ public class GameManager : MonoBehaviour
         Movement currentMovement = _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]];
         currentMovement.enabled = false;
         currentMovement.animator.SetBool("isMoving", false);
+        playerSwitched = false;
          
         //Change player.
         NextPlayerInTeam();
@@ -91,7 +94,8 @@ public class GameManager : MonoBehaviour
         _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].animator.SetBool("isMoving", true);
         var shooting = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
         shooting.enabled = true;
-        }
+        playerSwitched = true;
+    }
 
     void NextTeam()
     {
