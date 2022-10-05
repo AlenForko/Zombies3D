@@ -17,6 +17,11 @@ public class Timer : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            _maxTime = 100f;
+            _currentTime = _maxTime;
+        }
         _currentTime -= Time.deltaTime;
         timeText.text = "Time left: " + (int)_currentTime + " ";
     
