@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private PlayerStats _playerStats;
     public GameObject[] startPoints;
     public static GameObject currentPlayer; 
-    public static int _currentTeam = 0;
+    public static int _currentTeam;
 
     public static List<int> currentPlayerFromTeam;
     public static List<List<Movement>> _movement;
@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _currentTeam = 0;
         currentPlayerFromTeam = new List<int>();
         _movement = new List<List<Movement>>();
         teams = new List<List<GameObject>>();
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        //Move to calling only on death of Zombie
         if (teams.Count == 1)
         {
             SceneManager.LoadScene(2);
@@ -74,14 +76,15 @@ public class GameManager : MonoBehaviour
         Shooting shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
         shoot.enabled = false; 
         shoot.hasShot = false;
-        
-        _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].enabled = false;
-        _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].animator.SetBool("isMoving", false);
+
+        Movement currentMovement = _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]];
+        currentMovement.enabled = false;
+        currentMovement.animator.SetBool("isMoving", false);
          
         //Change player.
         NextPlayerInTeam();
         NextTeam();
-                           
+
         //Enable components for next player.
         _cameraMovement.SetCamera(); 
         _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].enabled = true;
