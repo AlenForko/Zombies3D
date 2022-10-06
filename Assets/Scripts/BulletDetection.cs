@@ -1,4 +1,5 @@
 using System.Collections;
+using Player;
 using UnityEngine;
 
 public class BulletDetection : MonoBehaviour
@@ -25,8 +26,6 @@ public class BulletDetection : MonoBehaviour
         }
     }
 
-   
-
     private void OutOfBounds()
     {
         if (gameObject.transform.position.y <= 0f)
@@ -35,7 +34,7 @@ public class BulletDetection : MonoBehaviour
         }
     }
 
-    IEnumerator WaitBeforeDestroy()
+    private IEnumerator WaitBeforeDestroy()
     {
         yield return new WaitForSeconds(5f);
         Destroy(gameObject);

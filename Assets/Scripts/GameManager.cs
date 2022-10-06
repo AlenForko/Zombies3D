@@ -1,5 +1,6 @@
-using System;
 using System.Collections.Generic;
+using Player;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -12,27 +13,30 @@ public class GameManager : MonoBehaviour
    
     private PlayerStats _playerStats;
     public GameObject[] startPoints;
-    public static GameObject currentPlayer; 
-    public static int _currentTeam;
-    public static bool playerSwitched;
-
-    public static List<int> currentPlayerFromTeam;
-    public static List<List<Movement>> _movement;
-    public static List<List<GameObject>> teams;
+    
+    public static GameObject CurrentPlayer; 
+    public static int CurrentTeam;
+    public static bool PlayerSwitched;
+    public static List<int> CurrentPlayerFromTeam;
+    public static List<List<Movement>> Movement;
+    public static List<List<GameObject>> Teams;
 
     private void Start()
     {
-        PauseMenu.gameIsPaused = false;
-        _currentTeam = 0;
-        currentPlayerFromTeam = new List<int>();
-        _movement = new List<List<Movement>>();
-        teams = new List<List<GameObject>>();
+        PauseMenu.GameIsPaused = false;
+        CurrentTeam = 0;
+        CurrentPlayerFromTeam = new List<int>();
+        Movement = new List<List<Movement>>();
+        Teams = new List<List<GameObject>>();
         
+        //Checks for how many players are playing.
         for (int i = 0; i < PlayerAmounts.PlayerAmount; i++)
         {
-            teams.Add(new List<GameObject>());
-            _movement.Add(new List<Movement>()); 
-            currentPlayerFromTeam.Add(0);
+            Teams.Add(new List<GameObject>());
+            Movement.Add(new List<Movement>()); 
+            CurrentPlayerFromTeam.Add(0);
+            
+            //Checks for zombies that the player has chosen and adds components to them.
             for (int z = 0; z < PlayerAmounts.ZombieAmount; z++)
             {
                 //Calculates spawn angles of zombie players based on spawn points.
@@ -45,8 +49,9 @@ public class GameManager : MonoBehaviour
                     startPoints[i].transform.rotation);
 
                 thisTeam.transform.SetParent(player.transform);
-                teams[i].Add(player);
-                _movement[i].Add(player.GetComponent<Movement>());
+                Teams[i].Add(player);
+                Movement[i].Add(player.GetComponent<Movement>());
+                
                 player.GetComponent<PlayerStats>().teamNumber = i;
                 player.GetComponent<PlayerStats>().zombieNumber = z;
                 
@@ -57,16 +62,17 @@ public class GameManager : MonoBehaviour
                 player.GetComponent<PlayerStats>().animator = player.GetComponentInChildren<Animator>();
             }        
         }
-        currentPlayer = teams[0][0];
+        //Sets player 1 from team 1 as default.
+        CurrentPlayer = Teams[0][0];
         _cameraMovement.SetCamera();
-        currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>().enabled = true;
-        currentPlayer.GetComponent<Movement>().enabled = true;
+        CurrentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>().enabled = true;
+        CurrentPlayer.GetComponent<Movement>().enabled = true;
     }
 
     private void Update()
     {
-        //Move to calling only on death of Zombie
-        if (teams.Count == 1)
+        //Move to winning scene when only 1 team left.
+        if (Teams.Count == 1)
         {
             SceneManager.LoadScene(2);
         }
@@ -75,14 +81,14 @@ public class GameManager : MonoBehaviour
     public void GoToNextPlayer()
     {
         //Disable components for current player.
-        Shooting shoot = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
+        Shooting shoot = CurrentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
         shoot.enabled = false; 
         shoot.hasShot = false;
 
-        Movement currentMovement = _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]];
+        Movement currentMovement = Movement[CurrentTeam][CurrentPlayerFromTeam[CurrentTeam]];
         currentMovement.enabled = false;
         currentMovement.animator.SetBool("isMoving", false);
-        playerSwitched = false;
+        PlayerSwitched = false;
          
         //Change player.
         NextPlayerInTeam();
@@ -90,49 +96,49 @@ public class GameManager : MonoBehaviour
 
         //Enable components for next player.
         _cameraMovement.SetCamera(); 
-        _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].enabled = true;
-        _movement[_currentTeam][currentPlayerFromTeam[_currentTeam]].animator.SetBool("isMoving", true);
-        var shooting = currentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
+        Movement[CurrentTeam][CurrentPlayerFromTeam[CurrentTeam]].enabled = true;
+        Movement[CurrentTeam][CurrentPlayerFromTeam[CurrentTeam]].animator.SetBool("isMoving", true);
+        var shooting = CurrentPlayer.transform.GetChild(0).GetChild(2).GetComponent<Shooting>();
         shooting.enabled = true;
-        playerSwitched = true;
+        PlayerSwitched = true;
     }
 
     void NextTeam()
     {
-        _currentTeam++;
-
-        if (_currentTeam >= teams.Count)
+        CurrentTeam++;
+        
+        if (CurrentTeam >= Teams.Count)
         {
-            _currentTeam %= teams.Count;
+            CurrentTeam %= Teams.Count;
         }
         
-        currentPlayer = teams[_currentTeam][currentPlayerFromTeam[_currentTeam]];
+        CurrentPlayer = Teams[CurrentTeam][CurrentPlayerFromTeam[CurrentTeam]];
     }
 
     void NextPlayerInTeam()
     {
-        currentPlayerFromTeam[_currentTeam]++;
+        CurrentPlayerFromTeam[CurrentTeam]++;
 
-        if (currentPlayerFromTeam[_currentTeam] >= teams[_currentTeam].Count)
+        if (CurrentPlayerFromTeam[CurrentTeam] >= Teams[CurrentTeam].Count)
         {
-            currentPlayerFromTeam[_currentTeam] %= teams[_currentTeam].Count;
+            CurrentPlayerFromTeam[CurrentTeam] %= Teams[CurrentTeam].Count;
         }
         
-        currentPlayer = teams[_currentTeam][currentPlayerFromTeam[_currentTeam]];
+        CurrentPlayer = Teams[CurrentTeam][CurrentPlayerFromTeam[CurrentTeam]];
     }
 
     public static void CheckTeamCount()
     {
-        for (int i = 0; i < teams.Count; i++)
+        for (int i = 0; i < Teams.Count; i++)
         {
-            if (teams[i].Count==0)
+            if (Teams[i].Count==0)
             {
-                teams.RemoveAt(i);
-                _movement.RemoveAt(i);
-                _currentTeam--;
-                if (_currentTeam < 0)
+                Teams.RemoveAt(i);
+                Movement.RemoveAt(i);
+                CurrentTeam--;
+                if (CurrentTeam < 0)
                 {
-                    _currentTeam = 0;
+                    CurrentTeam = 0;
                 }
             }
         }

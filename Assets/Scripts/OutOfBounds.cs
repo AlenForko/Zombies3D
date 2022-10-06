@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class OutofBounds : MonoBehaviour
+public class OutOfBounds : MonoBehaviour
 {
-
-    // Update is called once per frame
+    //Checks if player jumps out of the terrain.
     void Update()
     {
         if (gameObject.transform.position.y < -5f)

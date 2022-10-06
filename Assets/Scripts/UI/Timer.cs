@@ -1,34 +1,37 @@
 using TMPro;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+namespace UI
 {
-    private float _maxTime = 5.0f;
-    public static float _currentTime;
+    public class Timer : MonoBehaviour
+    {
+        private float _maxTime = 5.0f;
+        public static float CurrentTime;
     
-    public GameManager GameManager;
+        public GameManager gameManager;
 
-    public TextMeshProUGUI timeText;
+        public TextMeshProUGUI timeText;
 
-    private void Start()
-    {
-        _currentTime = _maxTime;
-    }
-
-    private void LateUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.F10))
+        private void Start()
         {
-            _maxTime = 100f;
-            _currentTime = _maxTime;
+            CurrentTime = _maxTime;
         }
-        _currentTime -= Time.deltaTime;
-        timeText.text = "Time left: " + (int)_currentTime + " ";
-    
-        if (_currentTime <= 0f)
+
+        private void LateUpdate()
         {
-            GameManager.GoToNextPlayer();
-            _currentTime = _maxTime;
+            if (Input.GetKeyDown(KeyCode.F10))
+            {
+                _maxTime = 100f;
+                CurrentTime = _maxTime;
+            }
+            CurrentTime -= Time.deltaTime;
+            timeText.text = "Time left: " + (int)CurrentTime + " ";
+    
+            if (CurrentTime <= 0f)
+            {
+                gameManager.GoToNextPlayer();
+                CurrentTime = _maxTime;
+            }
         }
     }
 }

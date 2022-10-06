@@ -1,50 +1,54 @@
+using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cursor = UnityEngine.Cursor;
 
-public class PauseMenu : MonoBehaviour
+namespace UI
 {
-    public GameObject pauseMenu;
-    private CameraMovement _cameraMovement;
-
-    public static bool gameIsPaused = false;
-
-    void Update()
+    public class PauseMenu : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        public GameObject pausingMenu;
+        private CameraMovement _cameraMovement;
+
+        public static bool GameIsPaused;
+
+        private void Update()
         {
-            if (gameIsPaused)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Resume();
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-            else
-            {
-                Pause();
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                if (GameIsPaused)
+                {
+                    Resume();
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                }
+                else
+                {
+                    Pause();
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                }
             }
         }
-    }
 
-    public void Pause()
-    {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        gameIsPaused = true;
-    }
+        private void Pause()
+        {
+            pausingMenu.SetActive(true);
+            Time.timeScale = 0f;
+            GameIsPaused = true;
+        }
 
-    public void Resume()
-    {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-        gameIsPaused = false;
-    }
+        private void Resume()
+        {
+            pausingMenu.SetActive(false);
+            Time.timeScale = 1f;
+            GameIsPaused = false;
+        }
 
-    public void BackToMainMenu(int SceneID)
-    {
-        SceneManager.LoadScene(SceneID);
-        Time.timeScale = 1f;
+        public void BackToMainMenu(int sceneID)
+        {
+            SceneManager.LoadScene(sceneID);
+            Time.timeScale = 1f;
+        }
     }
 }

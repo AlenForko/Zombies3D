@@ -678,8 +678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1dde94bb19f6374d8a4504c3d62a5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  rbPlayer: {fileID: 1452867976869978424}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -728,7 +726,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1804533127865151818}
-  isDead: 0
   animator: {fileID: 0}
   teamNumber: 0
   zombieNumber: 0

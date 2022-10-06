@@ -1,72 +1,74 @@
 using System.Collections;
-using Unity.Collections;
-using Unity.VisualScripting;
+using UI;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour
+namespace Player
 {
-    public Rigidbody[] bulletPrefab;
-    private float _bulletSpeed = 10f;
-    public bool hasShot = false;
-
-    private int _currentWeapon;
-    public Transform[] weapons;
-    public static int weaponDamage;
-
-    private MeshRenderer weaponSkin;
-
-    void Start()
+    public class Shooting : MonoBehaviour
     {
-        weaponSkin = weapons[_currentWeapon].GetComponent<MeshRenderer>();
-        _currentWeapon = 0;
-        weaponDamage = 20;
-    }
+        public Rigidbody[] bulletPrefab;
+        private float _bulletSpeed = 10f;
+        public bool hasShot = false;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        private int _currentWeapon;
+        public Transform[] weapons;
+        public static int WeaponDamage;
+
+        private MeshRenderer _weaponSkin;
+
+        void Start()
         {
-            ChangeWeapon(0);
-            weaponDamage = 20;
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeWeapon(1);
-            weaponDamage = 50;
+            _weaponSkin = weapons[_currentWeapon].GetComponent<MeshRenderer>();
+            _currentWeapon = 0;
+            WeaponDamage = 20;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !hasShot && !PauseMenu.gameIsPaused)
+        void Update()
         {
-            Rigidbody newBullet = Instantiate(bulletPrefab[_currentWeapon], transform.position, transform.rotation);
-            newBullet.AddForce(transform.forward * _bulletSpeed, ForceMode.Impulse);
-            BulletDetection bulletDetection = newBullet.GetComponent<BulletDetection>();
-            bulletDetection.owner = this;
-            hasShot = true;
-            StartCoroutine(WeaponSkin());
-        }
-    }
-
-    private void ChangeWeapon(int weaponOrder)
-    {
-        _currentWeapon = weaponOrder;
-        for (int i = 0; i < bulletPrefab.Length; i++)
-        {
-            if (i == weaponOrder)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                weapons[i].gameObject.SetActive(true);
+                ChangeWeapon(0);
+                WeaponDamage = 20;
             }
-            else
+            else if(Input.GetKeyDown(KeyCode.Alpha2))
             {
-                weapons[i].gameObject.SetActive(false);
+                ChangeWeapon(1);
+                WeaponDamage = 50;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) && !hasShot && !PauseMenu.GameIsPaused)
+            {
+                Rigidbody newBullet = Instantiate(bulletPrefab[_currentWeapon], transform.position, transform.rotation);
+                newBullet.AddForce(transform.forward * _bulletSpeed, ForceMode.Impulse);
+                BulletDetection bulletDetection = newBullet.GetComponent<BulletDetection>();
+                bulletDetection.owner = this;
+                hasShot = true;
+                StartCoroutine(WeaponSkin());
             }
         }
-        weaponSkin = weapons[_currentWeapon].GetComponent<MeshRenderer>();
-    }
 
-    IEnumerator WeaponSkin()
-    {
-        weaponSkin.enabled = false;
-        yield return new WaitForSeconds(2f);
-        weaponSkin.enabled = true;
+        private void ChangeWeapon(int weaponOrder)
+        {
+            _currentWeapon = weaponOrder;
+            for (int i = 0; i < bulletPrefab.Length; i++)
+            {
+                if (i == weaponOrder)
+                {
+                    weapons[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    weapons[i].gameObject.SetActive(false);
+                }
+            }
+            _weaponSkin = weapons[_currentWeapon].GetComponent<MeshRenderer>();
+        }
+
+        IEnumerator WeaponSkin()
+        {
+            _weaponSkin.enabled = false;
+            yield return new WaitForSeconds(2f);
+            _weaponSkin.enabled = true;
+        }
     }
 }
