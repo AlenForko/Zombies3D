@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour
 
     private Movement _movement;
     private AudioSource _source;
-    [SerializeField]private AudioClip[] _audioClips;
+    [SerializeField]private AudioClip[] _audioHurtClips, _audioDeathClips;
     private void Start()
     {
         _currentHealth = _maxHealth;
@@ -46,7 +46,8 @@ public class PlayerStats : MonoBehaviour
     {
         isDead = true;
         animator.Play("Z_death_A");
-        yield return new WaitForSeconds(1f);
+        DeathSounds();
+        yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < GameManager.teams.Count; i++)
         {
@@ -64,7 +65,13 @@ public class PlayerStats : MonoBehaviour
 
     void HitSounds()
     {
-        AudioClip clip = _audioClips[Random.Range(0, _audioClips.Length)];
+        AudioClip clip = _audioHurtClips[Random.Range(0, _audioHurtClips.Length)];
         _source.PlayOneShot(clip);
+    }
+
+    void DeathSounds()
+    {
+        AudioClip deathclip = _audioDeathClips[Random.Range(0, _audioDeathClips.Length)];
+        _source.PlayOneShot(deathclip);
     }
 }

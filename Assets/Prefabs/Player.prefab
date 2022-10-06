@@ -732,12 +732,18 @@ MonoBehaviour:
   animator: {fileID: 0}
   teamNumber: 0
   zombieNumber: 0
-  _audioClips:
+  _audioHurtClips:
   - {fileID: 8300000, guid: ed04d691326b9a541a6867f2564b705c, type: 3}
   - {fileID: 8300000, guid: 86324f00e809a8a4bb140e28a8aa83c1, type: 3}
   - {fileID: 8300000, guid: 77e84593eab4dd444bac06fcef1cf273, type: 3}
   - {fileID: 8300000, guid: 111f4b50eaeef7e428a02ea6d18025c6, type: 3}
   - {fileID: 8300000, guid: 744ad103829cbef4c8a591c1d3d48d91, type: 3}
+  _audioDeathClips:
+  - {fileID: 8300000, guid: 3ec8beafab34ee346bbaaf30fbd2473d, type: 3}
+  - {fileID: 8300000, guid: db656de60e815e34d91b9cd29e0c2738, type: 3}
+  - {fileID: 8300000, guid: fc3ba4998f5cec0499aafad983596d41, type: 3}
+  - {fileID: 8300000, guid: 8c7c2b15d7d7bdc498f17a59555aee53, type: 3}
+  - {fileID: 8300000, guid: 0a7233ea720774c4ea075be78b06b348, type: 3}
 --- !u!114 &1702488776070879164
 MonoBehaviour:
   m_ObjectHideFlags: 0
