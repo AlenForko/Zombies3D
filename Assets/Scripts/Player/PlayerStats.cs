@@ -31,6 +31,12 @@ public class PlayerStats : MonoBehaviour
         {
             StartCoroutine(Death());
         }
+
+        if (Input.GetKey(KeyCode.F11))
+        {
+            _currentHealth = _maxHealth;
+            healthBar.SetHealth(_currentHealth);
+        }
     }
 
     public void TakeDamage()
