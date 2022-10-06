@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
    {
       isMoving = Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0;
       animator.SetBool("isMoving", isMoving);
-      if (isMoving && !PauseMenu.gameIsPaused)
+      if (isMoving && !PauseMenu.gameIsPaused && isGrounded)
       {
          if (!_audioSource.isPlaying)
          {
